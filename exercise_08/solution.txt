@@ -1,0 +1,16 @@
+mkdir pgdata
+
+docker run -d -e POSTGRES_PASSWORD='postgres' --name c8-postgres -v "$PWD"/pgdata:/var/lib/postgresql/data postgres:16
+
+docker exec c8-postgres psql -U postgres -c "CREATE TABLE dvd_rentals VALUES ( \
+title VARCHAR(200) PRIMARY KEY \
+);"
+
+docker exec c8-postgres psql -U postgres -c "INSERT INTO dvd_rentals \
+VALUES ('The Grand Budapest Hotel');"
+
+docker stop c8-postgres && docker rm c8-postgres
+
+docker run -d -e POSTGRES_PASSWORD='postgres' --name c8-postgres -v "$PWD"/pgdata:/var/lib/postgresql/data postgres:16
+
+docker exec c8-postgres psql -U postgres -c "SELECT * FROM dvd_rentals;"
