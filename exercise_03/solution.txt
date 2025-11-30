@@ -1,0 +1,3 @@
+docker build -t logging-app .
+docker run -d --name my-logger logging-app
+docker logs my-logger > logs.txt
