@@ -1,0 +1,5 @@
+docker run -d \
+  --name c9-dev-server \
+  -v "$PWD/app":/usr/share/nginx/html:ro \
+  -p 8009:80 \
+  nginx
