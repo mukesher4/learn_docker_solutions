@@ -1,0 +1,2 @@
+docker build -t c11-app .
+docker run -d -p 8011:8080 --name c11-server c11-app
